@@ -48,7 +48,7 @@ export function prevQuestion() {
         currentQuestion--;
         showQuestion(currentQuestion);
     }else{
-        window.location.href = "../HTML/videos.html";
+        window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
     }
 }
 
@@ -104,7 +104,7 @@ export function goToFinal() {
     sendEmail();
     console.log(user.anwsers);
     alert("Obrigado pelas Respostas!")
-    window.location.href="../index.html"
+    window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html"
 }
 
 
