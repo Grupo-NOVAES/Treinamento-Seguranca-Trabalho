@@ -22,7 +22,7 @@
                 proposto. Boa sorte!
             </p>
 
-            <button type="button" class="btn_entrar" id="btn_entrar"><a href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html">Entrar</a></button>
+            <button type="button" class="btn_entrar" id="btn_entrar">Entrar</button>
             <button type="button" class="btn_entrar" id="btn_entrar" style="margin-top: 10px;"><a href="../HTML/thanks.html">Teste</a></button>
         </div>
 
@@ -30,6 +30,15 @@
             <img id="imgIndex" src="./IMAGES/IdentidadeVisual/Logos Grupo Novaes_11.png" alt="">
         </div>
     </main>
+    <script>
+        const btn_goToLogin = document.getElementById('btn_entrar')
+
+        function goToLogin(){
+            window.location.href='https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html';
+        }
+
+        btn_goToLogin.addEventListener('click',goToLogin)
+    </script>
 </body>
 
 </html>
