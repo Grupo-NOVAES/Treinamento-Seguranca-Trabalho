@@ -1,0 +1,80 @@
+body {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#cards-container {
+    height: 390px;
+    width: 500px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.question-card {
+    display: none;
+}
+
+.question-card.active {
+    display: block;
+}
+
+#buttons-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#prevBtn {
+    padding: 8px;
+    border-radius: 7px;
+    width: 100px;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    background-color: #007B8F;
+    color: white;
+    transition: 0.4s ease-in-out;
+}
+
+#prevBtn:hover {
+    cursor: pointer;
+    transform: scale(105%);
+    background-color: #083C52;
+}
+
+#nextBtn {
+    padding: 8px;
+    border-radius: 7px;
+    width: 100px;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    background-color: #007B8F;
+    color: white;
+    transition: 0.4s ease-in-out;
+}
+
+#nextBtn:hover {
+    cursor: pointer;
+    transform: scale(105%);
+    background-color: #083C52;
+}
+
+/* Adicionando regras de mídia */
+@media (max-width: 500px) {
+    #cards-container {
+        width: 90%;
+    }
+@media (max-width: 250px){
+    #cards-container {
+        height: auto;
+        width: 100%;
+    }
+}
+}
