@@ -11,7 +11,7 @@ export async function sendEmail() {
     console.log("responses: "+responses.toString())
     const data = {
         service_id: 'service_4y6ezxe',
-        template_id: 'template_wd9i19y',
+        template_id: 'template_agz5d9u',
         user_id: 'dRZHmDTwH7gvncr8a',
         template_params: {
             'name': userData.name +" "+userData.lastname,
