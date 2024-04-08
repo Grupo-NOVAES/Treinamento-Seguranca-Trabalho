@@ -12,7 +12,7 @@ export async function sendEmail() {
     const data = {
         service_id: 'service_4y6ezxe',
         template_id: 'template_wd9i19y',
-        user_id: 'dRZHmDTwH7gvncr8a',
+        user_id: 'yqmOS-yAzIIBjIjEFvfEG',
         template_params: {
             'name': userData.name +" "+userData.lastname,
             'response': responses
