@@ -23,7 +23,7 @@ async function goToForms(){
     if(response){
         sessionStorage.setItem('userData', JSON.stringify(user));
         console.log(sessionStorage)
-        window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html"
+        window.location.href="/HTML/videos.html"
     }else{
         Swal.fire({
             title: "Nome ou sobrenome vazios!",
