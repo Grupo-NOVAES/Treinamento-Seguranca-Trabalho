@@ -104,11 +104,11 @@ textarea {
 /* Adicionando regras de mídia */
 @media (max-width: 500px) {
     #timer {
-        width: 90%;
+        width: 100%;
     }
 
     #cards-container {
-        width: 90%;
+        width: 100%;
     }
 
     @media (max-width: 460px) {
