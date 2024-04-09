@@ -31,7 +31,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             alert("O tempo acabou!");
-            window.location.href = "/index.html";
+            window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
 
         }
 
@@ -141,7 +141,7 @@ export function goToFinal() {
     
     console.log(user.answers);
     alert("Obrigado pelas Respostas!")
-    window.location.href="/HTML/thanks.html"
+    window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html"
 }
 
 
