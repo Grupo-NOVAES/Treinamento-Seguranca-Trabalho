@@ -20,7 +20,6 @@ function startTimer() {
     const countdown = setInterval(() => {
         const minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
-        console.log(sessionStorage);
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
@@ -32,7 +31,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             alert("O tempo acabou!");
-            window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
+            window.location.href = "/index.html";
 
         }
 
@@ -118,8 +117,9 @@ export function guardarResposta() {
     if (respostaSelecionada) {
         const resposta = respostaSelecionada.value;
         const idResposta = respostaSelecionada.getAttribute('name');
-        user.anwsers.push({ id: "Pergunta"+idResposta, resposta: resposta });
-        console.log(user.anwsers);
+        console.log(user.answers);
+        user.answers.push({ id: "Pergunta"+idResposta, resposta: resposta });
+        
     }
 
 
@@ -130,18 +130,18 @@ export function guardarRespostaTexto() {
     if (respostaTexto) {
         const resposta = respostaTexto.value;
         const idResposta = respostaTexto.getAttribute('name');
-        user.anwsers.push({ id: `questao${currentQuestion}`, resposta: resposta });
-        console.log(user.anwsers.toString());
+        user.answers.push({ id: `questao${currentQuestion}`, resposta: resposta });
+        console.log(user.answers.toString());
     }
 }
 
 export function goToFinal() {
     guardarResposta();
 
-    sendEmail();
-    console.log(user.anwsers);
+    
+    console.log(user.answers);
     alert("Obrigado pelas Respostas!")
-    window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/thanks.html"
+    window.location.href="/HTML/thanks.html"
 }
 
 
