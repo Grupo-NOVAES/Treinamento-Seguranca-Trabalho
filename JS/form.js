@@ -98,13 +98,13 @@ export function prevQuestion() {
         text: "Se você clicar em 'Sim', o questionário será anulado!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sim",
         cancelButtonText: "Voltar ao questionário",
+        confirmButtonText: "Sim",
         reverseButtons: true,
       })
       .then((result) => {
         if (result.isConfirmed) {
-        window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
+        window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
           // window.location.href = "../HTML/videos.html";
         }
       });

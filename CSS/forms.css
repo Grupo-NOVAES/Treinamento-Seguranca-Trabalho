@@ -5,16 +5,46 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;
+
+}
+
+#formulario {
+    justify-content: center;
+    align-items: center;
+}
+
+.timer {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#timer {
+    background-color: white;
+    color: #007B8F;
+    border: 2px solid #007B8F;
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12pt;
+    padding: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 #cards-container {
-    height: 390px;
+    height: 100%;
     width: 500px;
     margin-top: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #007B8F;
 }
 
 .question-card {
@@ -23,6 +53,10 @@ body {
 
 .question-card.active {
     display: block;
+}
+
+textarea {
+    width: 100%;
 }
 
 #buttons-container {
@@ -65,49 +99,53 @@ body {
     transform: scale(105%);
     background-color: #083C52;
 }
-.timer {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
 
-#timer {
-    background-color: white;
-    color: #007B8F;
-    border: 2px solid #007B8F;
-    border-radius: 8px;
-    font-weight: 500;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 12pt;
-    padding: 5px;
-    margin-top: 20px;
-    width: 100%;
-}
+/* Adicionando regras de mídia */
+@media (max-width: 500px) {
+    #timer {
+        width: 90%;
+    }
 
-@media (max-width: 410px) {
     #cards-container {
-        width:350px;
-        height: 485px;
-    }
-    .textArea{
-        width: 17em;
-    }
-    #card-body{
-        width: 500px;
+        width: 90%;
     }
 
-    .question-card iframe{
-        width: 100%;
-        height: auto;
+    @media (max-width: 460px) {
+        #cards-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
     }
-@media (max-width: 250px){
-    #cards-container {
-        height: auto;
-        width: 100%;
+
+    @media (max-width: 375px) {
+        #cards-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
     }
-}
+
+    @media (max-width: 330px) {
+        #buttons-container{
+            margin-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 284px) {
+        #cards-container {
+            height: auto;
+        }
+    }
+
+    @media (max-width: 244px) {
+        button{
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 250px) {
+        #cards-container {
+            height: auto;
+            width: 100%;
+        }
+    }
 }

@@ -35,14 +35,10 @@ export function nextQuestion() {
 }
 
 export function prevQuestion() {
-  if (currentQuestion > 1) {
-    currentQuestion--;
-    showQuestion(currentQuestion);
-  }
-  if (currentQuestion < totalQuestions) {
-    // window.location.href = "../HTML/login.html";
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
-  }
+    if (currentQuestion > 1) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+    }
 }
 
 export function validateCurrentQuestion() {
