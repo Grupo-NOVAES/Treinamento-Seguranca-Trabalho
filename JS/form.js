@@ -84,7 +84,7 @@ export function prevQuestion() {
     currentQuestion--;
     showQuestion(currentQuestion);
   }
-  if (currentQuestion < totalQuestions) {
+  if (currentQuestion < 1) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",

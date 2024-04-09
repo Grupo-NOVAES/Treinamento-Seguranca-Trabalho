@@ -105,7 +105,7 @@ export function goToFinal() {
     icon: "warning",
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Iniciar"
   
   }).then((result) => {
     if(result.isConfirmed){

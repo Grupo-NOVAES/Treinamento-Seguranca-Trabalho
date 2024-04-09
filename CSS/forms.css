@@ -38,6 +38,7 @@ body {
 }
 
 #cards-container {
+    align-items: center;
     height: 100%;
     width: 500px;
     margin-top: 20px;
