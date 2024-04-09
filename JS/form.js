@@ -181,7 +181,7 @@ export function goToFinal() {
   }).then((result) => {
     if (result.isConfirmed) {
       // window.location.href = "../HTML/thanks.html";
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/thanks.html";
+    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
     }
   });
 }
