@@ -90,7 +90,7 @@ export function guardarRespostaTexto() {
 export function goToFinal() {
     guardarResposta();
 
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
+    window.location.href = "/HTML/indexForms.html";
     console.log(user.anwsers)
 }
 
