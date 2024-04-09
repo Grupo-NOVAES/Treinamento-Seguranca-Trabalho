@@ -41,7 +41,7 @@ export function prevQuestion() {
   }
   if (currentQuestion < totalQuestions) {
     // window.location.href = "../HTML/login.html";
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/login.html";
+    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
   }
 }
 
@@ -113,7 +113,7 @@ export function goToFinal() {
   
   }).then((result) => {
     if(result.isConfirmed){
-      window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/indexForms.html";
+      window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
     }
   });
   
