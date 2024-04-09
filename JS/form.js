@@ -43,6 +43,7 @@ function startTimer() {
 
 // Chame a função para iniciar o timer quando o formulário for carregado
 window.addEventListener('DOMContentLoaded', () => {
+    alert('Você terá 15 minutos para responder');
     startTimer();
 });
 
@@ -140,7 +141,7 @@ export function goToFinal() {
     sendEmail();
     console.log(user.anwsers);
     alert("Obrigado pelas Respostas!")
-    window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html"
+    window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/thanks.html"
 }
 
 
