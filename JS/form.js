@@ -1,27 +1,26 @@
 import { sendEmail } from "./enviarEmail.js";
 
-export const user={
-    name:"",
-    lastname:"",
-    email:"",
-    anwsers:[]
-}
+export const user = {
+    name: "",
+    lastname: "",
+    email: "",
+    answers: []
+};
 
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 let currentQuestion = 1;
 const totalQuestions = document.querySelectorAll('.question-card').length;
-let timeLeft = 600; // 10 minutos em segundos
+let timeLeft = 900; 
 const timerDisplay = document.getElementById('timer');
 
-console.log(sessionStorage);
 
+// Função para iniciar o timer
 function startTimer() {
     const countdown = setInterval(() => {
         const minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
-
-        // Adicione um zero à esquerda se o número de segundos for menor que 10
+        console.log(sessionStorage);
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
@@ -42,9 +41,14 @@ function startTimer() {
     }, 1000); // Atualize o timer a cada segundo
 }
 
+// Chame a função para iniciar o timer quando o formulário for carregado
 window.addEventListener('DOMContentLoaded', () => {
     startTimer();
 });
+
+// Resto do seu código aqui...
+
+
 
 export function showQuestion(questionNumber) {
     const questions = document.querySelectorAll('.question-card');
