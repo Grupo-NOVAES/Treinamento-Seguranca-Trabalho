@@ -80,17 +80,18 @@ export function nextQuestion() {
 }
 
 export function prevQuestion() {
-  if (currentQuestion > 1) {
-    currentQuestion--;
+  console.log(currentQuestion)
+  currentQuestion--;
+  if (currentQuestion > 0) {
     showQuestion(currentQuestion);
   }
-  if (currentQuestion < 1) {
+  if (currentQuestion === 0) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
         cancelButton: "btn btn-danger",
       },
-      buttonsStyling: false,
+      buttonsStyling: true,
     });
     swalWithBootstrapButtons
       .fire({
@@ -98,16 +99,18 @@ export function prevQuestion() {
         text: "Se você clicar em 'Sim', o questionário será anulado!",
         icon: "warning",
         showCancelButton: true,
-        cancelButtonText: "Voltar ao questionário",
         confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         reverseButtons: true,
       })
       .then((result) => {
         if (result.isConfirmed) {
         window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
-          // window.location.href = "../HTML/videos.html";
+         //window.location.href = "../HTML/videos.html";
         }
       });
+      currentQuestion++;
+      showQuestion(currentQuestion);
   }
 }
 
@@ -181,6 +184,7 @@ export function goToFinal() {
   }).then((result) => {
     if (result.isConfirmed) {
       // window.location.href = "../HTML/thanks.html";
+    sendEmail();
     window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
     }
   });

@@ -26,19 +26,27 @@ export function nextQuestion() {
     guardarResposta();
     guardarRespostaTexto();
     currentQuestion++;
-    if (currentQuestion === totalQuestions + 1) {
+    console.log(currentQuestion)
+    if (currentQuestion === 7) {
       goToFinal();
+      currentQuestion = currentQuestion-1;
     } else {
       showQuestion(currentQuestion);
     }
+    
+
   }
 }
 
 export function prevQuestion() {
-    if (currentQuestion > 1) {
-        currentQuestion--;
-        showQuestion(currentQuestion);
-    }
+  if (currentQuestion > 1) {
+    currentQuestion--;
+    showQuestion(currentQuestion);
+  }
+  if (currentQuestion < totalQuestions) {
+    // window.location.href = "../HTML/login.html";
+    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
+  }
 }
 
 export function validateCurrentQuestion() {
@@ -105,15 +113,17 @@ export function goToFinal() {
     icon: "warning",
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Iniciar"
+    confirmButtonText: "Yes, delete it!"
   
   }).then((result) => {
     if(result.isConfirmed){
       window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
+      //window.location.href='../HTML/indexForms.html'
+    }else if(result.isDenied){
+      console.log("RECUSADO!")
     }
   });
   
-  console.log(user.anwsers);
 }
 
 showQuestion(currentQuestion);
