@@ -25,7 +25,6 @@ header {
 }
 
 main {
-    background-color: yellow;
     width: 100%;
 }
 
@@ -113,9 +112,6 @@ footer{
 }
 
 @media screen and (max-width: 600px) {
-    body{
-        background-color: red;
-    }
     main{
         width: 100%;
     }
