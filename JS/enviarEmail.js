@@ -6,7 +6,7 @@ const status = document.getElementById('status-bar');
 
 export async function sendEmail() {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
-    const responses = user.anwsers.map(answer => `${answer.id}: ${answer.resposta}`).join('\n');
+    const responses = user.answers.map(answer => `${answer.id}: ${answer.resposta}`).join('\n');
     console.log("nome: "+userData.name);
     console.log("responses: "+responses.toString())
     const data = {
