@@ -4,7 +4,18 @@ export const user = {
   name: "",
   lastname: "",
   email: "",
-  answers: [],
+  answers: [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
 };
 
 const prevBtn = document.getElementById("prevBtn");
@@ -153,7 +164,7 @@ export function guardarResposta() {
     const resposta = respostaSelecionada.value;
     const idResposta = respostaSelecionada.getAttribute("name");
     console.log(user.answers);
-    user.answers.push({ id: "Pergunta" + idResposta, resposta: resposta });
+    user.answers[currentQuestion-1]=resposta;
   }
 }
 
@@ -164,7 +175,7 @@ export function guardarRespostaTexto() {
   if (respostaTexto) {
     const resposta = respostaTexto.value;
     const idResposta = respostaTexto.getAttribute("name");
-    user.answers.push({ id: `questao${currentQuestion}`, resposta: resposta });
+    user.answers[currentQuestion-1]=resposta;
     console.log(user.answers.toString());
   }
 }
