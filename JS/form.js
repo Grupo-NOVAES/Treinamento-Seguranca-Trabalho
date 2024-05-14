@@ -164,7 +164,7 @@ export function guardarResposta() {
     const resposta = respostaSelecionada.value;
     const idResposta = respostaSelecionada.getAttribute("name");
     console.log(user.answers);
-    user.answers[currentQuestion-1]=resposta;
+    user.answers[currentQuestion-1]=`Resposta${currentQuestion}: ${resposta}`;
   }
 }
 
@@ -175,7 +175,7 @@ export function guardarRespostaTexto() {
   if (respostaTexto) {
     const resposta = respostaTexto.value;
     const idResposta = respostaTexto.getAttribute("name");
-    user.answers[currentQuestion-1]=resposta;
+    user.answers[currentQuestion-1]=`Resposta${currentQuestion}: ${resposta}`;
     console.log(user.answers.toString());
   }
 }
