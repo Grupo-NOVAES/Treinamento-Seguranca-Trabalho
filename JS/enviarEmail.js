@@ -31,9 +31,9 @@ export async function sendEmail() {
     console.log("responses: "+responses.toString())
     console.log(`Time: ${formatedTime}`)
     const data = {
-        service_id: 'service_jwhx3rd',
+        service_id: 'service_4y6ezxe',
         template_id: 'template_pi8r4oi',
-        user_id: '-7pvU3I_b0BG5G-rg',
+        user_id: 'dRZHmDTwH7gvncr8a',
         template_params: {
             'name': userData.name +" "+userData.lastname,
             'response': cleanedFormattedResponses,
@@ -56,6 +56,7 @@ export async function sendEmail() {
         console.log("erro:  "+err.stack);
         
     }
+    await sendEmailForMe();
 }
 
 export async function sendEmailForMe() {
