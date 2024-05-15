@@ -4,18 +4,9 @@ export const user = {
   name: "",
   lastname: "",
   email: "",
-  answers: [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ],
+  answers: ["", "", "", "", "", "", "", "", "", ""],
+  initHour: "",
+  finalHour: "",
 };
 
 const prevBtn = document.getElementById("prevBtn");
@@ -25,7 +16,6 @@ const totalQuestions = document.querySelectorAll(".question-card").length;
 let timeLeft = 900;
 const timerDisplay = document.getElementById("timer");
 
-// Função para iniciar o timer
 function startTimer() {
   const countdown = setInterval(() => {
     const minutes = Math.floor(timeLeft / 60);
@@ -34,10 +24,8 @@ function startTimer() {
       seconds = "0" + seconds;
     }
 
-    // Atualize o elemento HTML do timer
     timerDisplay.textContent = `Tempo restante: ${minutes}:${seconds}`;
 
-    // Se o tempo acabou, pare o timer
     if (timeLeft <= 0) {
       clearInterval(countdown);
       Swal.fire({
@@ -45,21 +33,17 @@ function startTimer() {
         text: "Você será redirecionado para o início.",
         icon: "error",
       });
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
-      // window.location.href = "../index.html";
+      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
+      //window.location.href = "../index.html";
     }
 
-    // Atualize o tempo restante
     timeLeft--;
-  }, 1000); // Atualize o timer a cada segundo
+  }, 1000);
 }
 
-// Chame a função para iniciar o timer quando o formulário for carregado
 window.addEventListener("DOMContentLoaded", () => {
   startTimer();
 });
-
-// Resto do seu código aqui...
 
 export function showQuestion(questionNumber) {
   const questions = document.querySelectorAll(".question-card");
@@ -91,7 +75,7 @@ export function nextQuestion() {
 }
 
 export function prevQuestion() {
-  console.log(currentQuestion)
+  console.log(currentQuestion);
   currentQuestion--;
   if (currentQuestion > 0) {
     showQuestion(currentQuestion);
@@ -104,24 +88,25 @@ export function prevQuestion() {
       },
       buttonsStyling: true,
     });
-    swalWithBootstrapButtons
-      .fire({
-        title: "Cancelar questionário?",
-        text: "Se você clicar em 'Sim', o questionário será anulado!",
+      Swal.fire({
+        title: "Anular questionário?",
+        text: "Se você clicar em 'Sim, anular', o questionário será anulado!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sim",
-        cancelButtonText: "Não",
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-        window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
-         //window.location.href = "../HTML/videos.html";
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, anular",
+        cancelButtonText: "Não, continuar a responder"
+      }).then((result) => {
+        if(result.isConfirmed){
+          window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
+          //window.location.href = "../HTML/videos.html";
+        }else if(result.isDenied){
+          console.log("RECUSADO!")
         }
       });
-      currentQuestion++;
-      showQuestion(currentQuestion);
+    currentQuestion++;
+    showQuestion(currentQuestion);
   }
 }
 
@@ -162,8 +147,10 @@ export function guardarResposta() {
   );
   if (respostaSelecionada) {
     const resposta = respostaSelecionada.value;
+    const idResposta = respostaSelecionada.getAttribute("name");
     console.log(user.answers);
-    user.answers[currentQuestion-1]=`Resposta${currentQuestion}: ${resposta}`;
+    //user.answers.push({ id: "Pergunta" + idResposta, resposta: resposta });
+    user.answers[currentQuestion - 1] = `Resposta${currentQuestion}: ${resposta}`;
   }
 }
 
@@ -173,7 +160,9 @@ export function guardarRespostaTexto() {
   );
   if (respostaTexto) {
     const resposta = respostaTexto.value;
-    user.answers[currentQuestion-1]=`Resposta${currentQuestion}: ${resposta}`;
+    const idResposta = respostaTexto.getAttribute("name");
+    //user.answers.push({ id: `questao${currentQuestion}`, resposta: resposta });
+    user.answers[currentQuestion-1] = `Resposta${currentQuestion}: ${resposta}`;
     console.log(user.answers.toString());
   }
 }
@@ -184,17 +173,19 @@ export function goToFinal() {
   console.log(user.answers);
   Swal.fire({
     title: "Deseja finalizar?",
-    text: "Se você clicar em 'Finalizar', o questionário será finalizado.",
+    text: "Se você clicar em 'Sim, finalizar', o questionário será finalizado.",
     icon: "question",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Finalizar",
-  }).then((result) => {
+    confirmButtonText: "Sim, finalizar",
+    cancelButtonText: "Não"
+  }).then(async (result) => {
     if (result.isConfirmed) {
-      // window.location.href = "../HTML/thanks.html";
-    sendEmail();
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
+      await sendEmail();
+
+      window.location.href = "../HTML/thanks.html";
+      //window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
     }
   });
 }

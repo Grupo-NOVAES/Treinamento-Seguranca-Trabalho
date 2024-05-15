@@ -22,7 +22,7 @@
                 proposto. Boa sorte!
             </p>
 
-            <button type="button" class="btn_entrar" id="btn_entrar">Entrar</button>
+            <button type="button" class="btn_entrar" id="btn_entrar">Entrar</button> 
         </div>
 
         <div class="containerImage">
@@ -30,10 +30,23 @@
         </div>
     </main>
     <script>
+        function saveTime(){
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+
+            let time = `${hours}:${minutes}:${seconds}`;
+
+            sessionStorage.setItem('initTime', JSON.stringify(time));
+            console.log(sessionStorage)
+        }
+
         const btn_goToLogin = document.getElementById('btn_entrar')
 
         function goToLogin(){
-            //window.location.href='/HTML/login.html';
+            saveTime();
+            //window.location.href='./HTML/login.html';
             window.location.href='https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html';
         }
 

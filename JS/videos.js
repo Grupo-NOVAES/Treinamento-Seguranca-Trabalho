@@ -45,7 +45,7 @@ export function prevQuestion() {
     showQuestion(currentQuestion);
   }
   if (currentQuestion === 0 ) {
-    // window.location.href = "../HTML/login.html";
+    //window.location.href = "../HTML/login.html";
     window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
     currentQuestion++;
     showQuestion(currentQuestion);
@@ -112,13 +112,14 @@ export function goToFinal() {
   guardarResposta();
 
   Swal.fire({
-    title: "Iniciar questionário!",
+    title: "Iniciar questionário?",
     text: "Você terá 15 minutos para realizar o questionário!",
-    icon: "warning",
+    icon: "question",
+    showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Responder Formulario"
-  
+    confirmButtonText: "Sim, iniciar",
+    cancelButtonText: "Não"
   }).then((result) => {
     if(result.isConfirmed){
       window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
