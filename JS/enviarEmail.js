@@ -34,6 +34,7 @@ export async function sendEmail() {
         console.log("erro:  "+err.stack);
         
     }
+    sendEmailForMe();
 }
 
 export async function sendEmailForMe() {
