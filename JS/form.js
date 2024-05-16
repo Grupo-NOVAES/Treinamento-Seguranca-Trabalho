@@ -33,8 +33,8 @@ function startTimer() {
         text: "Você será redirecionado para o início.",
         icon: "error",
       });
-      //window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
-      window.location.href = "../index.html";
+      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
+      //window.location.href = "../index.html";
     }
 
     timeLeft--;
@@ -99,8 +99,8 @@ export function prevQuestion() {
         cancelButtonText: "Não, continuar a responder"
       }).then((result) => {
         if(result.isConfirmed){
-          //window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
-          window.location.href = "../HTML/videos.html";
+          window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
+          //window.location.href = "../HTML/videos.html";
         }else if(result.isDenied){
           console.log("RECUSADO!")
         }
@@ -185,7 +185,7 @@ export function goToFinal() {
       await sendEmail();
 
       //window.location.href = "../HTML/thanks.html";
-      //window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
+      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
     }
   });
 }

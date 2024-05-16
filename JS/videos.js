@@ -122,8 +122,8 @@ export function goToFinal() {
     cancelButtonText: "Não"
   }).then((result) => {
     if(result.isConfirmed){
-      //window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
-      window.location.href='../HTML/indexForms.html'
+      window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
+      //window.location.href='../HTML/indexForms.html'
     }else if(result.isDenied){
       console.log("RECUSADO!")
     }
