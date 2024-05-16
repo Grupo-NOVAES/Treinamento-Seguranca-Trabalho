@@ -1,4 +1,22 @@
-import { sendEmail } from "./enviarEmail.js";
+const numerosSorteados = [];
+
+function sorteioUnico() {
+
+
+  return function() {
+    if (numerosSorteados.length === 9) {
+      return 10;
+    }
+
+    let numero;
+    do {
+      numero = Math.floor(Math.random() * 9) + 1;
+    } while (numerosSorteados.includes(numero));
+
+    numerosSorteados.push(numero);
+    return numero;
+  };
+}
 
 export const user = {
   name: "",
@@ -13,39 +31,11 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 let currentQuestion = 1;
 const totalQuestions = document.querySelectorAll(".question-card").length;
-let timeLeft = 900;
-const timerDisplay = document.getElementById("timer");
 
-function startTimer() {
-  const countdown = setInterval(() => {
-    const minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-
-    timerDisplay.textContent = `Tempo restante: ${minutes}:${seconds}`;
-
-    if (timeLeft <= 0) {
-      clearInterval(countdown);
-      Swal.fire({
-        title: "O tempo acabou!",
-        text: "Você será redirecionado para o início.",
-        icon: "error",
-      });
-      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
-      //window.location.href = "../index.html";
-    }
-
-    timeLeft--;
-  }, 1000);
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  startTimer();
-});
-
-export function showQuestion(questionNumber) {
+function showQuestion() {
+  const questionNumberGenerator = sorteioUnico();
+  const questionNumber = questionNumberGenerator(); // Chamada correta da função
+  currentQuestion = questionNumber;
   const questions = document.querySelectorAll(".question-card");
   questions.forEach((question) => {
     question.classList.remove("active");
@@ -53,7 +43,10 @@ export function showQuestion(questionNumber) {
   document.querySelector(`#question${questionNumber}`).classList.add("active");
 }
 
-export function nextQuestion() {
+
+
+
+function nextQuestion() {
   if (!validateCurrentQuestion()) {
     Swal.fire({
       title: "Responda a pergunta antes de avançar!",
@@ -62,11 +55,15 @@ export function nextQuestion() {
     });
     return;
   }
-  if (currentQuestion < totalQuestions + 1) {
+  console.log("currentQuestion: "+currentQuestion)
+  if (currentQuestion < 11) {
     guardarResposta();
     guardarRespostaTexto();
     currentQuestion++;
-    if (currentQuestion === totalQuestions + 1) {
+    console.log("total de questoes: "+totalQuestions)
+    console.log("Questao atual: "+currentQuestion)
+
+    if (currentQuestion === 11) {
       goToFinal();
     } else {
       showQuestion(currentQuestion);
@@ -74,8 +71,7 @@ export function nextQuestion() {
   }
 }
 
-export function prevQuestion() {
-  console.log(currentQuestion);
+function prevQuestion() {
   currentQuestion--;
   if (currentQuestion > 0) {
     showQuestion(currentQuestion);
@@ -100,7 +96,6 @@ export function prevQuestion() {
       }).then((result) => {
         if(result.isConfirmed){
           window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
-          //window.location.href = "../HTML/videos.html";
         }else if(result.isDenied){
           console.log("RECUSADO!")
         }
@@ -110,7 +105,7 @@ export function prevQuestion() {
   }
 }
 
-export function validateCurrentQuestion() {
+function validateCurrentQuestion() {
   const currentQuestionCard = document.querySelector(
     `#question${currentQuestion}`
   );
@@ -141,36 +136,29 @@ export function validateCurrentQuestion() {
   return true;
 }
 
-export function guardarResposta() {
+function guardarResposta() {
   const respostaSelecionada = document.querySelector(
     `input[name="${currentQuestion}"]:checked`
   );
   if (respostaSelecionada) {
     const resposta = respostaSelecionada.value;
-    const idResposta = respostaSelecionada.getAttribute("name");
-    console.log(user.answers);
-    //user.answers.push({ id: "Pergunta" + idResposta, resposta: resposta });
     user.answers[currentQuestion - 1] = `Resposta${currentQuestion}: ${resposta}`;
   }
+  console.log(user.answers);
 }
 
-export function guardarRespostaTexto() {
+function guardarRespostaTexto() {
   const respostaTexto = document.querySelector(
     `textarea[name="${currentQuestion}"]`
   );
   if (respostaTexto) {
     const resposta = respostaTexto.value;
-    const idResposta = respostaTexto.getAttribute("name");
-    //user.answers.push({ id: `questao${currentQuestion}`, resposta: resposta });
     user.answers[currentQuestion-1] = `Resposta${currentQuestion}: ${resposta}`;
-    console.log(user.answers.toString());
   }
 }
 
-export function goToFinal() {
+function goToFinal() {
   guardarResposta();
-
-  console.log(user.answers);
   Swal.fire({
     title: "Deseja finalizar?",
     text: "Se você clicar em 'Sim, finalizar', o questionário será finalizado.",
@@ -183,14 +171,45 @@ export function goToFinal() {
   }).then(async (result) => {
     if (result.isConfirmed) {
       await sendEmail();
-
-      //window.location.href = "../HTML/thanks.html";
       window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
     }
   });
 }
 
-showQuestion(currentQuestion);
+
+
+function startTimer() {
+  let timeLeft = 900;
+  const timerDisplay = document.getElementById("timer");
+  const countdown = setInterval(() => {
+    const minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+
+    timerDisplay.textContent = `Tempo restante: ${minutes}:${seconds}`;
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      Swal.fire({
+        title: "O tempo acabou!",
+        text: "Você será redirecionado para o início.",
+        icon: "error",
+      });
+      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
+      //window.location.href = "../index.html";
+    }
+
+    timeLeft--;
+  }, 1000);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  startTimer();
+});
+
+showQuestion();
 
 prevBtn.addEventListener("click", prevQuestion);
 nextBtn.addEventListener("click", nextQuestion);

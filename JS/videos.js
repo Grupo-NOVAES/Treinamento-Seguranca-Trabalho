@@ -45,8 +45,8 @@ export function prevQuestion() {
     showQuestion(currentQuestion);
   }
   if (currentQuestion === 0 ) {
-    window.location.href = "../HTML/login.html";
-    //window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
+    //window.location.href = "../HTML/login.html";
+    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
     currentQuestion++;
     showQuestion(currentQuestion);
   }
