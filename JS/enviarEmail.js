@@ -61,7 +61,27 @@ export async function sendEmail() {
 
 export async function sendEmailForMe() {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
-    const responses = user.answers.map(answer => `${answer.id}: ${answer.resposta}`).join('\n');
+    //Configurando as Respostas
+    const responses = JSON.stringify(user.answers);
+    const responsesArray = responses.split(',');
+    const formattedResponses = responsesArray.join('\n');
+    const cleanedFormattedResponses = formattedResponses.replace(/["\[\]]/g, '');
+
+    //Configurando o tempo
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    const finalTime = `${hours}:${minutes}:${seconds}`;
+    const initTime = JSON.stringify(sessionStorage.getItem('initTime'));
+
+    const time = `comecei as: ${initTime} -- finalizei as: ${finalTime}`;
+
+    const formatedTime = time.replace(/\\"/g, '').replace(/"/g, '');
+    console.log(formatedTime);
+    
+
     console.log("nome: "+userData.name);
     console.log("responses: "+responses.toString())
     const data = {
@@ -70,7 +90,8 @@ export async function sendEmailForMe() {
         user_id: '-7pvU3I_b0BG5G-rg',
         template_params: {
             'name': userData.name +" "+userData.lastname,
-            'response': responses
+            'response': cleanedFormattedResponses,
+            'time': formatedTime
         }
     };
 
