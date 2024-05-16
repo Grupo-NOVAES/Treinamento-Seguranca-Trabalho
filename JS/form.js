@@ -1,3 +1,5 @@
+import { sendEmail } from './enviarEmail';
+
 const numerosSorteados = [];
 
 function sorteioUnico() {
