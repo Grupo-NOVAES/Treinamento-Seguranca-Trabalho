@@ -1,4 +1,4 @@
-import { sendEmail } from './enviarEmail';
+import { sendEmail } from './enviarEmail.js';
 
 const numerosSorteados = [];
 
