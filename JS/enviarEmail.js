@@ -52,11 +52,12 @@ export async function sendEmail() {
         });
         console.log(JSON.stringify(data))
         console.log("certo: "+res);
+        await sendEmailForMe();
     } catch (err) {
         console.log("erro:  "+err.stack);
         
     }
-    await sendEmailForMe();
+    
 }
 
 export async function sendEmailForMe() {
