@@ -32,7 +32,7 @@ export async function sendEmail() {
     console.log(`Time: ${formatedTime}`)
     const data = {
         service_id: 'service_4y6ezxe',
-        template_id: 'template_pi8r4oi',
+        template_id: 'template_agz5d9u',
         user_id: 'dRZHmDTwH7gvncr8a',
         template_params: {
             'name': userData.name +" "+userData.lastname,

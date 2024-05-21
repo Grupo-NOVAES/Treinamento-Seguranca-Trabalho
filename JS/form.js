@@ -1,30 +1,30 @@
-import { sendEmail } from './enviarEmail';
+import { sendEmail } from './enviarEmail.js';
 
 const numerosSorteados = [];
+var numeroQuestao = 0;
 
-function sorteioUnico() {
-
-
+function sorteioOrdem() {
+  
   return function() {
-    if (numerosSorteados.length === 9) {
-      return 10;
+    while (numerosSorteados.length < 10) {
+      let numero = Math.floor(Math.random() * 19) + 1;
+      if (!numerosSorteados.includes(numero)) {
+        numerosSorteados.push(numero);
+      }
     }
-
-    let numero;
-    do {
-      numero = Math.floor(Math.random() * 9) + 1;
-    } while (numerosSorteados.includes(numero));
-
-    numerosSorteados.push(numero);
-    return numero;
+    
+    console.log("Números sorteados: " + JSON.stringify(numerosSorteados));
+    return numerosSorteados;
   };
 }
+
+
 
 export const user = {
   name: "",
   lastname: "",
   email: "",
-  answers: ["", "", "", "", "", "", "", "", "", ""],
+  answers: ["","","","","","","","","",""],
   initHour: "",
   finalHour: "",
 };
@@ -32,11 +32,10 @@ export const user = {
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 let currentQuestion = 1;
-const totalQuestions = document.querySelectorAll(".question-card").length;
 
 function showQuestion() {
-  const questionNumberGenerator = sorteioUnico();
-  const questionNumber = questionNumberGenerator(); // Chamada correta da função
+  
+  const questionNumber = numerosSorteados[numeroQuestao]
   currentQuestion = questionNumber;
   const questions = document.querySelectorAll(".question-card");
   questions.forEach((question) => {
@@ -58,17 +57,16 @@ function nextQuestion() {
     return;
   }
   console.log("currentQuestion: "+currentQuestion)
-  if (currentQuestion < 11) {
+  if (currentQuestion < 21) {
     guardarResposta();
     guardarRespostaTexto();
     currentQuestion++;
-    console.log("total de questoes: "+totalQuestions)
     console.log("Questao atual: "+currentQuestion)
 
-    if (currentQuestion === 11) {
+    if (numeroQuestao == 10) {
       goToFinal();
     } else {
-      showQuestion(currentQuestion);
+      showQuestion();
     }
   }
 }
@@ -76,7 +74,8 @@ function nextQuestion() {
 function prevQuestion() {
   currentQuestion--;
   if (currentQuestion > 0) {
-    showQuestion(currentQuestion);
+    numeroQuestao--;
+    showQuestion();
   }
   if (currentQuestion === 0) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -103,7 +102,7 @@ function prevQuestion() {
         }
       });
     currentQuestion++;
-    showQuestion(currentQuestion);
+    showQuestion();
   }
 }
 
@@ -144,7 +143,9 @@ function guardarResposta() {
   );
   if (respostaSelecionada) {
     const resposta = respostaSelecionada.value;
-    user.answers[currentQuestion - 1] = `Resposta${currentQuestion}: ${resposta}`;
+    //user.answers.push(`Pergunta ${currentQuestion} - Resposta: ${resposta}`)
+    user.answers[numeroQuestao]=(`Pergunta ${currentQuestion} - Resposta: ${resposta}`);
+    numeroQuestao++;
   }
   console.log(user.answers);
 }
@@ -155,7 +156,10 @@ function guardarRespostaTexto() {
   );
   if (respostaTexto) {
     const resposta = respostaTexto.value;
-    user.answers[currentQuestion-1] = `Resposta${currentQuestion}: ${resposta}`;
+    //user.answers.push(`Pergunta ${currentQuestion} - Resposta: ${resposta}`)
+    user.answers[numeroQuestao]=(`Pergunta ${currentQuestion} - Resposta: ${resposta}`);
+    numeroQuestao++;
+
   }
 }
 
@@ -210,6 +214,10 @@ function startTimer() {
 window.addEventListener("DOMContentLoaded", () => {
   startTimer();
 });
+
+
+const sorteio = sorteioOrdem();
+const resultado = sorteio();
 
 showQuestion();
 
