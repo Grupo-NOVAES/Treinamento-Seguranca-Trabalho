@@ -156,7 +156,7 @@ function guardarRespostaTexto() {
   );
   if (respostaTexto) {
     const resposta = respostaTexto.value;
-    //user.answers.push(`Pergunta ${currentQuestion} - Resposta: ${resposta}`)
+    user.answers.push(`Pergunta ${currentQuestion} - Resposta: ${resposta}`)
     user.answers[numeroQuestao]=(`Pergunta ${currentQuestion} - Resposta: ${resposta}`);
     numeroQuestao++;
 
