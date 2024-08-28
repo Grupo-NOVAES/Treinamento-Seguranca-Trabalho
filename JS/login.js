@@ -1,4 +1,5 @@
 import { user } from "./index.js";
+import links from "./links.js";
 
 const btnGetLogin = document.getElementById("btn_login");
 
@@ -25,7 +26,7 @@ async function goToForms() {
     sessionStorage.setItem("userData", JSON.stringify(user));
     console.log(sessionStorage);
     //window.location.href = "../HTML/videos.html";
-    window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html"
+    window.location.href=links.VideoPage;
   } else {
     Swal.fire({
       title: "Nome ou sobrenome vazios!",

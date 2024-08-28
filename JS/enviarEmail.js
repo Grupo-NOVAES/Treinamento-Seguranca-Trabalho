@@ -3,8 +3,7 @@ import { user } from "./form.js";
 
 const status = document.getElementById('status-bar');
 
-
-export async function sendEmail() {
+export async function sendAllEmails(){
     const userData = JSON.parse(sessionStorage.getItem('userData'));
     const responses = JSON.stringify(user.answers);
     const responsesArray = responses.split(',');
@@ -33,11 +32,48 @@ export async function sendEmail() {
     
     console.log("nome: "+userData.name);
     console.log("responses: "+responses.toString())
-    console.log(`Time: ${formatedTime}`)
+    console.log(`Time: ${formatedTime}`);
+    await sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData);
+    await sendEmailFabricio(cleanedFormattedResponses,formatedTime,userData);
+}
+
+async function sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData) {
+   
     const data = {
         service_id: 'service_8qh06ng',
         template_id: 'template_6qvjzwi',
-        user_id: 'LzfiSU8wYibsYiSsV',
+        user_id: '-LzfiSU8wYibsYiSsV',
+        template_params: {
+            'name': userData.name +" "+userData.lastname,
+            'response': cleanedFormattedResponses,
+            'time':formatedTime
+        }
+    };
+
+    try {
+         const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+             method: 'POST',
+             body: JSON.stringify(data),
+             headers: {
+                 'Content-Type': 'application/json',
+                 'Accept': 'application/json'
+             }
+         });
+        console.log(JSON.stringify(data))
+        console.log("certo: "+res);
+    } catch (err) {
+        console.log("erro:  "+err.stack);
+        
+    }
+    
+}
+
+async function sendEmailFabricio(cleanedFormattedResponses,formatedTime,userData) {
+   
+    const data = {
+        service_id: 'service_wwlw3qr',
+        template_id: 'template_6newprk',
+        user_id: '9Nn56SnmCwbddir6d',
         template_params: {
             'name': userData.name +" "+userData.lastname,
             'response': cleanedFormattedResponses,

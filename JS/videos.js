@@ -1,3 +1,5 @@
+import links from "./links.js";
+
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 let currentQuestion = 1;
@@ -46,7 +48,7 @@ export function prevQuestion() {
   }
   if (currentQuestion === 0 ) {
     //window.location.href = "../HTML/login.html";
-    window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html";
+    window.location.href = links.LoginPage;
     currentQuestion++;
     showQuestion(currentQuestion);
   }
@@ -122,7 +124,7 @@ export function goToFinal() {
     cancelButtonText: "Não"
   }).then((result) => {
     if(result.isConfirmed){
-      window.location.href="https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/indexForms.html";
+      window.location.href=links.FormsPage;
       //window.location.href='../HTML/indexForms.html'
     }else if(result.isDenied){
       console.log("RECUSADO!")

@@ -29,29 +29,8 @@
             <img id="imgIndex" src="./IMAGES/IdentidadeVisual/Logos Grupo Novaes_11.png" alt="">
         </div>
     </main>
-    <script>
-        function saveTime(){
-            let date = new Date();
-            let hours = date.getHours();
-            let minutes = date.getMinutes();
-            let seconds = date.getSeconds();
 
-            let time = `${hours}:${minutes}:${seconds}`;
-
-            sessionStorage.setItem('initTime', JSON.stringify(time));
-            console.log(sessionStorage)
-        }
-
-        const btn_goToLogin = document.getElementById('btn_entrar')
-
-        function goToLogin(){
-            saveTime();
-            //window.location.href='./HTML/login.html';
-            window.location.href='https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/login.html';
-        }
-
-        btn_goToLogin.addEventListener('click',goToLogin)
-    </script>
+    <script type="module" src="./JS/home.js"></script>
 </body>
 
 </html>

@@ -1,53 +1,73 @@
-import { sendEmail } from './enviarEmail.js';
+import { sendAllEmails } from './enviarEmail.js';
+import links from './links.js';
 
 const numerosSorteados = [];
-var numeroQuestao = 0;
+let numeroQuestao = 0;
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+let currentQuestion = 1;
 
 function sorteioOrdem() {
-  
-  return function() {
-    while (numerosSorteados.length < 10) {
-      let numero = Math.floor(Math.random() * 19) + 1;
-      if (!numerosSorteados.includes(numero)) {
-        numerosSorteados.push(numero);
-      }
+  while (numerosSorteados.length < 10) {
+    const numero = Math.floor(Math.random() * 19) + 1;
+    if (!numerosSorteados.includes(numero)) {
+      numerosSorteados.push(numero);
     }
-    
-    console.log("Números sorteados: " + JSON.stringify(numerosSorteados));
-    return numerosSorteados;
-  };
+  }
+  console.log(JSON.stringify(numerosSorteados))
+  return numerosSorteados;
 }
-
-
 
 export const user = {
   name: "",
   lastname: "",
   email: "",
-  answers: ["","","","","","","","","",""],
+  answers: Array(10).fill(""),
   initHour: "",
   finalHour: "",
 };
 
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-let currentQuestion = 1;
+
 
 function showQuestion() {
-  
-  const questionNumber = numerosSorteados[numeroQuestao]
+  const questionNumber = numerosSorteados[numeroQuestao];
   currentQuestion = questionNumber;
-  const questions = document.querySelectorAll(".question-card");
-  questions.forEach((question) => {
+  document.querySelectorAll(".question-card").forEach(question => {
     question.classList.remove("active");
   });
   document.querySelector(`#question${questionNumber}`).classList.add("active");
 }
 
+function validateCurrentQuestion() {
+  const currentQuestionCard = document.querySelector(`#question${currentQuestion}`);
+  const radioInputs = currentQuestionCard.querySelectorAll('input[type="radio"]');
+  const checkboxInputs = currentQuestionCard.querySelectorAll('input[type="checkbox"]');
+  const textareaInput = currentQuestionCard.querySelector("textarea");
 
+  const isRadioChecked = Array.from(radioInputs).some(input => input.checked);
+  const isCheckboxChecked = Array.from(checkboxInputs).some(input => input.checked);
+  const isTextareaFilled = textareaInput ? textareaInput.value.trim() : true;
 
+  return isRadioChecked || isCheckboxChecked || isTextareaFilled;
+}
 
+function guardarResposta() {
+  const respostaSelecionada = document.querySelector(`input[name="${currentQuestion}"]:checked`);
+  if (respostaSelecionada) {
+    user.answers[numeroQuestao] = `Pergunta ${currentQuestion} - Resposta: ${respostaSelecionada.value}`;
+  }
+  console.log(JSON.stringify(user.answers))
+}
+
+function guardarRespostaTexto() {
+  const respostaTexto = document.querySelector(`textarea[name="${currentQuestion}"]`);
+  if (respostaTexto) {
+    user.answers[numeroQuestao] = `Pergunta ${currentQuestion} - Resposta: ${respostaTexto.value}`;
+  }
+  console.log(JSON.stringify(user.answers))
+}
 function nextQuestion() {
+  console.log(currentQuestion)
   if (!validateCurrentQuestion()) {
     Swal.fire({
       title: "Responda a pergunta antes de avançar!",
@@ -56,110 +76,43 @@ function nextQuestion() {
     });
     return;
   }
-  console.log("currentQuestion: "+currentQuestion)
-  if (currentQuestion < 21) {
+
+  
+  if (numeroQuestao <= 9) {
     guardarResposta();
     guardarRespostaTexto();
-    currentQuestion++;
-    console.log("Questao atual: "+currentQuestion)
-
-    if (numeroQuestao == 10) {
-      goToFinal();
-    } else {
-      showQuestion();
-    }
+    console.log("numero da questao: " + numeroQuestao)
+    numeroQuestao++;
+    console.log("numero da questao depois: " + numeroQuestao)
+  }
+  if (numeroQuestao === 10) {
+    goToFinal();
+  } else {
+    showQuestion();
   }
 }
+
 
 function prevQuestion() {
-  currentQuestion--;
-  if (currentQuestion > 0) {
+  if (currentQuestion > 1) {
     numeroQuestao--;
+    currentQuestion--;
     showQuestion();
-  }
-  if (currentQuestion === 0) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger",
-      },
-      buttonsStyling: true,
+  } else {
+    Swal.fire({
+      title: "Anular questionário?",
+      text: "Se você clicar em 'Sim, anular', o questionário será anulado!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, anular",
+      cancelButtonText: "Não, continuar a responder",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = links.link_VideoPage;
+      }
     });
-      Swal.fire({
-        title: "Anular questionário?",
-        text: "Se você clicar em 'Sim, anular', o questionário será anulado!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sim, anular",
-        cancelButtonText: "Não, continuar a responder"
-      }).then((result) => {
-        if(result.isConfirmed){
-          window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/videos.html";
-        }else if(result.isDenied){
-          console.log("RECUSADO!")
-        }
-      });
-    currentQuestion++;
-    showQuestion();
-  }
-}
-
-function validateCurrentQuestion() {
-  const currentQuestionCard = document.querySelector(
-    `#question${currentQuestion}`
-  );
-  const radioInputs = currentQuestionCard.querySelectorAll(
-    'input[type="radio"]'
-  );
-  const checkboxInputs = currentQuestionCard.querySelectorAll(
-    'input[type="checkbox"]'
-  );
-  const textareaInput = currentQuestionCard.querySelector("textarea");
-
-  if (radioInputs.length > 0) {
-    const checkedRadio = Array.from(radioInputs).some((input) => input.checked);
-    if (!checkedRadio) return false;
-  }
-
-  if (checkboxInputs.length > 0) {
-    const checkedCheckbox = Array.from(checkboxInputs).some(
-      (input) => input.checked
-    );
-    if (!checkedCheckbox) return false;
-  }
-
-  if (textareaInput) {
-    if (!textareaInput.value.trim()) return false;
-  }
-
-  return true;
-}
-
-function guardarResposta() {
-  const respostaSelecionada = document.querySelector(
-    `input[name="${currentQuestion}"]:checked`
-  );
-  if (respostaSelecionada) {
-    const resposta = respostaSelecionada.value;
-    //user.answers.push(`Pergunta ${currentQuestion} - Resposta: ${resposta}`)
-    user.answers[numeroQuestao]=(`Pergunta ${currentQuestion} - Resposta: ${resposta}`);
-    numeroQuestao++;
-  }
-  console.log(user.answers);
-}
-
-function guardarRespostaTexto() {
-  const respostaTexto = document.querySelector(
-    `textarea[name="${currentQuestion}"]`
-  );
-  if (respostaTexto) {
-    const resposta = respostaTexto.value;
-    user.answers.push(`Pergunta ${currentQuestion} - Resposta: ${resposta}`)
-    user.answers[numeroQuestao]=(`Pergunta ${currentQuestion} - Resposta: ${resposta}`);
-    numeroQuestao++;
-
   }
 }
 
@@ -173,28 +126,24 @@ function goToFinal() {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Sim, finalizar",
-    cancelButtonText: "Não"
+    cancelButtonText: "Não",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await sendEmail();
-      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/HTML/thanks.html";
+      await sendAllEmails();
+
+     
     }
   });
 }
 
-
-
 function startTimer() {
   let timeLeft = 600;
   const timerDisplay = document.getElementById("timer");
+
   const countdown = setInterval(() => {
     const minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-
-    timerDisplay.textContent = `Tempo restante: ${minutes}:${seconds}`;
+    const seconds = timeLeft % 60;
+    timerDisplay.textContent = `Tempo restante: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
     if (timeLeft <= 0) {
       clearInterval(countdown);
@@ -203,8 +152,7 @@ function startTimer() {
         text: "Você será redirecionado para o início.",
         icon: "error",
       });
-      window.location.href = "https://grupo-novaes.github.io/Treinamento-Seguranca-Trabalho/index.html";
-      //window.location.href = "../index.html";
+      window.location.href = links.HomePage;
     }
 
     timeLeft--;
@@ -215,10 +163,7 @@ window.addEventListener("DOMContentLoaded", () => {
   startTimer();
 });
 
-
 const sorteio = sorteioOrdem();
-const resultado = sorteio();
-
 showQuestion();
 
 prevBtn.addEventListener("click", prevQuestion);
