@@ -1,6 +1,5 @@
 import { user } from "./form.js";
 
-
 const status = document.getElementById('status-bar');
 
 export async function sendAllEmails(){
