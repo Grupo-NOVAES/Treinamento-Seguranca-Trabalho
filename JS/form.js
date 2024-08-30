@@ -129,8 +129,9 @@ function goToFinal() {
     cancelButtonText: "Não",
   }).then(async (result) => {
     if (result.isConfirmed) {
+      document.getElementById("nextBtn").disabled = true;
+      document.getElementById("prevBtn").disabled = true;
       await sendAllEmails();
-
      
     }
   });
