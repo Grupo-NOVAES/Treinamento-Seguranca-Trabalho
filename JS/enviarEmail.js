@@ -34,7 +34,6 @@ export async function sendAllEmails(){
     console.log("responses: "+responses.toString())
     console.log(`Time: ${formatedTime}`);
     await sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData);
-    await sendEmailFabricio(cleanedFormattedResponses,formatedTime,userData);
 }
 
 async function sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData) {
@@ -68,36 +67,6 @@ async function sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData)
     
 }
 
-async function sendEmailFabricio(cleanedFormattedResponses,formatedTime,userData) {
-   
-    const data = {
-        service_id: 'service_wwlw3qr',
-        template_id: 'template_6newprk',
-        user_id: '9Nn56SnmCwbddir6d',
-        template_params: {
-            'name': userData.name +" "+userData.lastname,
-            'response': cleanedFormattedResponses,
-            'time':formatedTime
-        }
-    };
-
-    try {
-         const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-             method: 'POST',
-             body: JSON.stringify(data),
-             headers: {
-                 'Content-Type': 'application/json',
-                 'Accept': 'application/json'
-             }
-         });
-        console.log(JSON.stringify(data))
-        console.log("certo: "+res);
-    } catch (err) {
-        console.log("erro:  "+err.stack);
-        
-    }
-    
-}
 
 
 
