@@ -44,9 +44,20 @@ function validateCurrentQuestion() {
   const checkboxInputs = currentQuestionCard.querySelectorAll('input[type="checkbox"]');
   const textareaInput = currentQuestionCard.querySelector("textarea");
 
+  console.log("RESPOSTAS _____________")
+  console.log("card: "+JSON.stringify(currentQuestionCard));
+  console.log("radio: "+JSON.stringify(radioInputs));
+  console.log("checkbox: "+JSON.stringify(checkboxInputs));
+  console.log("text: "+JSON.stringify(textareaInput));
+
   const isRadioChecked = Array.from(radioInputs).some(input => input.checked);
   const isCheckboxChecked = Array.from(checkboxInputs).some(input => input.checked);
-  const isTextareaFilled = textareaInput ? textareaInput.value.trim() : true;
+  const isTextareaFilled = textareaInput ? textareaInput.value.trim() !== '' : false;
+
+
+  console.log(isRadioChecked)
+  console.log(isCheckboxChecked)
+  console.log(isTextareaFilled)
 
   return isRadioChecked || isCheckboxChecked || isTextareaFilled;
 }
@@ -66,6 +77,8 @@ function guardarRespostaTexto() {
   }
   console.log(JSON.stringify(user.answers))
 }
+
+
 function nextQuestion() {
   console.log(currentQuestion)
   if (!validateCurrentQuestion()) {
@@ -132,7 +145,7 @@ function goToFinal() {
       document.getElementById("nextBtn").disabled = true;
       document.getElementById("prevBtn").disabled = true;
       await sendAllEmails();
-     
+      window.location.href = links.thankYouPage
     }
   });
 }
