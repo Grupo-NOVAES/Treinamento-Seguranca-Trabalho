@@ -41,7 +41,7 @@ async function sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData)
     const data = {
         service_id: 'service_8qh06ng',
         template_id: 'template_6qvjzwi',
-        user_id: '-LzfiSU8wYibsYiSsV',
+        user_id: 'LzfiSU8wYibsYiSsV',
         template_params: {
             'name': userData.name +" "+userData.lastname,
             'response': cleanedFormattedResponses,
@@ -59,16 +59,11 @@ async function sendEmailMicheli(cleanedFormattedResponses,formatedTime,userData)
              }
          });
         console.log(JSON.stringify(data))
-        console.log("certo: "+res);
+        console.log("certo: "+JSON.stringify(res));
     } catch (err) {
         console.log("erro:  "+err.stack);
         
     }
     
 }
-
-
-
-
-
 
