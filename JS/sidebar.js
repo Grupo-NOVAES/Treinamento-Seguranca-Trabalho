@@ -1,7 +1,7 @@
 let bodyElement = document.querySelector('body');
 
-  BarraLateral = bodyElement.querySelector(".BarraLateral"),
+const barraLateral = document.querySelector(".BarraLateral");
 
-BarraLateral.addEventListener("click", () => {
-  BarraLateral.classList.toggle("close");
-});
+barraLateral.addEventListener('click',() => {
+  barraLateral.classList.toggle("close");
+})
