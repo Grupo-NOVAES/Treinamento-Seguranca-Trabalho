@@ -47,7 +47,6 @@ export function prevQuestion() {
     showQuestion(currentQuestion);
   }
   if (currentQuestion === 0 ) {
-    //window.location.href = "../HTML/login.html";
     window.location.href = links.LoginPage;
     currentQuestion++;
     showQuestion(currentQuestion);
@@ -104,7 +103,6 @@ export function guardarRespostaTexto() {
   );
   if (respostaTexto) {
     const resposta = respostaTexto.value;
-    const idResposta = respostaTexto.getAttribute("name");
     user.anwsers.push({ id: `questao${currentQuestion}`, resposta: resposta });
     console.log(user.anwsers.toString());
   }

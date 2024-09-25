@@ -8,15 +8,15 @@ export async function sendAllEmails(){
     const responses = JSON.stringify(user.answers);
     const responsesArray = responses.split(',');
     const formattedResponses = responsesArray.join('\n');
-    const cleanedFormattedResponses = formattedResponses.replace(/["\[\]]/g, '');
+    const cleanedFormattedResponses = formattedResponses.replace(/["[\]]/g, '');
 
     const date = new Date();
     const hours = date.getHours();
-    const minutes = date.getMinutes();
+    let minutes = date.getMinutes();
     if(minutes.lenght == 1){
         minutes = "0"+minutes
     }
-    const seconds = date.getSeconds();
+    let seconds = date.getSeconds();
     if(seconds.lenght == 1){
         seconds = "0"+seconds
     }
