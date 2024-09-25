@@ -25,7 +25,6 @@ async function goToForms() {
   if (response) {
     sessionStorage.setItem("userData", JSON.stringify(user));
     console.log(sessionStorage);
-    //window.location.href = "../HTML/videos.html";
     window.location.href=links.VideoPage;
   } else {
     Swal.fire({
