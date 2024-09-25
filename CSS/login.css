@@ -48,6 +48,7 @@ main {
 }
 
 #form_main {
+    background-color: rgb(236, 236, 236);
     width: 450px;
     padding-bottom: 40px;
     padding-top: 20px;
@@ -57,7 +58,7 @@ main {
     justify-content: center;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    background-color: linear-gradient(#b3dfe7, rgb(226, 226, 226), rgb(255, 255, 255));
+    background: linear-gradient(#b3dfe7, rgb(226, 226, 226), rgb(255, 255, 255));
     margin-bottom: 30px;
     margin-top: 10px;
 }
@@ -104,10 +105,6 @@ label {
 }
 
 #input_email {
-    width: 80%;
-}
-#input_senha {
-    margin-top: 20px;
     width: 80%;
 }
 

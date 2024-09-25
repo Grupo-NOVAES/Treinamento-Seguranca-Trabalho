@@ -28,15 +28,8 @@ body {
 
 #buttons-container {
     margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-}
-
-#actionsBtn{
-    display: flex;
-    flex-direction: row;
-    width: 60%;
-    justify-content: space-between;
+    text-align: center;
+    align-items: center;
 }
 
 #prevBtn {
@@ -80,29 +73,6 @@ p{
     transform: scale(105%);
     background-color: #083C52;
 }
-
-
-#testBtn{
-    display: flex;
-    flex-direction: row;
-    width: 40%;
-    align-items: center;
-    justify-content: end;
-}
-
-#startTest {
-    padding: 8px;
-    border-radius: 7px;
-    width: 100px;
-    font-weight: 500;
-    outline: none;
-    border: none;
-    background-color: #00A148;
-    color: white;
-    transition: 0.4s ease-in-out;
-}
-
-
 
 /* Adicionando regras de mídia */
 @media (max-width: 410px) {
