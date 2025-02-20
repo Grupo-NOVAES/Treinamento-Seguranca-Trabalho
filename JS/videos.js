@@ -29,7 +29,7 @@ export function nextQuestion() {
     guardarRespostaTexto();
     currentQuestion++;
     console.log(currentQuestion)
-    if (currentQuestion === 7) {
+    if (currentQuestion === 4) {
       goToFinal();
       currentQuestion = currentQuestion-1;
     } else {
