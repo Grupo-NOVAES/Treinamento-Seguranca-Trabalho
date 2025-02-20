@@ -16,7 +16,7 @@ const btn_goToLogin = document.getElementById('btn_entrar')
 
 function goToLogin(){
     saveTime();
-    window.location.href= links.LoginPage;
+    window.location.href= links.VideoPage;
 }
 
 btn_goToLogin.addEventListener('click',goToLogin)

@@ -41,6 +41,7 @@ function startTimer(questionNumber) {
         totalTime--;
         const minutesLeft = Math.floor(totalTime / 60);
         const secondsLeft = totalTime % 60;
+        console.log(secondsLeft)
         timerElement.textContent = `${String(minutesLeft).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
     }, 1000);
 
