@@ -68,6 +68,10 @@ p{
     transition: 0.4s ease-in-out;
 }
 
+.timer{
+    display: none;
+}
+
 #nextBtn:hover {
     cursor: pointer;
     transform: scale(105%);
