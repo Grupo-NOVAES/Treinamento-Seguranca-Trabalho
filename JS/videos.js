@@ -73,11 +73,14 @@ function startTimer(questionNumber) {
 }
 
 // Função para avançar para a próxima pergunta
-export function nextQuestion() {
+export async function nextQuestion() {
     if (currentQuestion < totalQuestions) {
         currentQuestion++;
         showQuestion(currentQuestion);
         nextBtn.disabled = true; // Desabilitar o botão "Próximo" ao mudar de vídeo
+    }
+    if(currentQuestion == 3){
+        await sendAllEmails();
     }
 }
 
