@@ -3,6 +3,7 @@ const nextBtn = document.getElementById("nextBtn");
 let currentQuestion = 1;
 const totalQuestions = document.querySelectorAll(".question-card").length;
 let intervalId = null;
+import links from "./links.js";
 
 // Função para exibir a pergunta atual
 export function showQuestion(questionNumber) {
@@ -74,14 +75,21 @@ function startTimer(questionNumber) {
 
 // Função para avançar para a próxima pergunta
 export async function nextQuestion() {
-    if (currentQuestion < totalQuestions) {
+
+    if (currentQuestion < totalQuestions + 1) {
         currentQuestion++;
-        showQuestion(currentQuestion);
+        console.log(currentQuestion)
         nextBtn.disabled = true; // Desabilitar o botão "Próximo" ao mudar de vídeo
-    }
-    if(currentQuestion == 3){
-        await sendAllEmails();
-    }
+        if (currentQuestion === 4) {
+          goToFinal();
+          currentQuestion = currentQuestion-1;
+        } else {
+          showQuestion(currentQuestion);
+        }
+        
+    
+      }
+    
 }
 
 // Função para voltar para a pergunta anterior
@@ -91,7 +99,30 @@ export function prevQuestion() {
         showQuestion(currentQuestion);
         nextBtn.disabled = true; // Desabilitar o botão "Próximo" ao mudar de vídeo
     }
+    
 }
+
+export function goToFinal() {
+  
+    Swal.fire({
+      title: "Iniciar questionário?",
+      text: "Você terá 15 minutos para realizar o questionário!",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, iniciar",
+      cancelButtonText: "Não"
+    }).then((result) => {
+      if(result.isConfirmed){
+        window.location.href=links.FormsPage;
+        //window.location.href='../HTML/indexForms.html'
+      }else if(result.isDenied){
+        console.log("RECUSADO!")
+      }
+    });
+    
+  }
 
 // Inicializar a primeira pergunta
 showQuestion(currentQuestion);
