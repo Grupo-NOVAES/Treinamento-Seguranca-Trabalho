@@ -151,7 +151,7 @@ function goToFinal() {
 }
 
 function startTimer() {
-  let timeLeft = 600;
+  let timeLeft = 900;
   const timerDisplay = document.getElementById("timer");
 
   const countdown = setInterval(() => {
