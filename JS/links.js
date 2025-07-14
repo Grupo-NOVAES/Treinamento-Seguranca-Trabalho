@@ -1,5 +1,5 @@
 const  LoginPage = "https://grupo-novaes.github.io/Trainings_Simple_Platform/HTML/login.html";
-const   VideoPage = "https://grupo-novaes.github.io/Trainings_Simple_Platformo/HTML/videos.html";
+const   VideoPage = "https://grupo-novaes.github.io/Trainings_Simple_Platform/HTML/videos.html";
 const   FormsPage = "https://grupo-novaes.github.io/Trainings_Simple_Platform/HTML/indexForms.html";
 const  thankYouPage = "https://grupo-novaes.github.io/Trainings_Simple_Platform/HTML/thanks.html";
 const   HomePage = "https://grupo-novaes.github.io/Trainings_Simple_Platform/index.html";
