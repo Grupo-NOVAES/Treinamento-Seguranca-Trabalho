@@ -115,7 +115,7 @@ export function goToFinal() {
       cancelButtonText: "Não"
     }).then((result) => {
       if(result.isConfirmed){
-        window.location.href=links.FormsPage;
+        window.location.href="https://grupo-novaes.github.io/Trainings_Simple_Platform/HTML/IndexForms.html"
         //window.location.href='../HTML/indexForms.html'
       }else if(result.isDenied){
         console.log("RECUSADO!")
