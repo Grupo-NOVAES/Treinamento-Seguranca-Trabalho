@@ -190,8 +190,7 @@ label {
     }
 
     #form_main {
-        width: 100%;
-        border-radius: 0;
+        width: 90%;
         padding-top: 15px;
         padding-left: 10px;
         padding-right: 10px;
@@ -229,8 +228,7 @@ label {
     }
 
     #form_main {
-        width: 100%;
-        border-radius: 0;
+        width: 90%;
         padding-top: 15px;
     }
     #input_name {
